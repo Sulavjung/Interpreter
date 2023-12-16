@@ -10,38 +10,114 @@ public class RuntimeStack {
 
   public RuntimeStack() {
     this.framePointers = new Stack<>();
+    this.framePointers.push(0);
     this.runStack = new Vector<>();
   }
 
+  
+
+  public RuntimeStack(Stack<Integer> framePointers, Vector<Integer> runStack) {
+    this.framePointers = framePointers;
+    this.framePointers.push(0);
+    this.runStack = runStack;
+  }
+
+
+
   public int peek() {
-    return 0;
+    if(!runStack.isEmpty()){
+      return runStack.lastElement();
+    }
+    throw new RuntimeException("Runtime runStack is empty");
   }
 
   public int pop() {
-    return 0;
+    if(!runStack.isEmpty()){
+      return runStack.remove(runStack.size()-1);
+    }
+    throw new RuntimeException("Runtime runStack is empty");
   }
 
   public int push(int value) {
-    return 0;
+    runStack.add(value);
+    return value;
   }
 
   public Integer push(Integer value) {
-    return 0;
+    runStack.add(value);
+    return value;
   }
 
   public void newFrameAt(int offset) {
-
+    framePointers.push(runStack.size() - offset);
   }
 
   public void popFrame() {
+    if (!framePointers.isEmpty()) {
+        int frameStart = framePointers.pop();
 
-  }
+        while (runStack.size() > frameStart) {
+            runStack.remove(runStack.size() - 1);
+        }
+    } else {
+        throw new RuntimeException("Runtime framePointers is empty.");
+    }
+}
+
 
   public int store(int offset) {
-    return 0;
+
+    if(!runStack.isEmpty()){
+      int value = pop();
+      runStack.set(framePointers.peek() + offset, value);
+      return value;
+    }
+
+    throw new RuntimeException("Runtime runstack is empty. ");
+    
   }
 
   public int load(int offset) {
-    return 0;
+
+    if(!runStack.isEmpty()){
+      int value = runStack.get(framePointers.peek() + offset);
+      push(value);
+      return value;
+    }
+    throw new RuntimeException("Runtime runstack is empty.");
   }
+
+
+
+  @Override
+  public String toString() {
+    String result = "";
+
+    for (int i = 0; i < framePointers.size(); i++) {
+        int start = framePointers.get(i);
+        int end = (i < framePointers.size() - 1) ? framePointers.get(i + 1) : runStack.size();
+
+        result += "[";
+        
+        for (int j = start; j < end; j++) {
+            result += runStack.get(j);
+            if (j < end - 1) {
+                result += ",";
+            }
+        }
+
+        result += "]";
+
+        if (i < framePointers.size() - 1) {
+          result += " ";
+      }
+    }
+
+
+    return result;
+}
+
+  
+
+  
 }
