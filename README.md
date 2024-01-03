@@ -1,32 +1,69 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/tOu9l-Id)
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-7f7980b617ed060a017424585567c406b6ee15c891e84e1186181d67ecf80aa0.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=13240242)
-# Assignment 4 (Interpreter) Documentation
+# Interpreter Project Documentation
 
-Author: Sulav Jung Hamal
+## Author
+Sulav Jung Hamal
 
-## Scope of Work
+## Overview
 
-Mark each of the requirements you completed by adding an X in between the square brackets. If you have any comments for a given section, add them in the "Comments from student" section (i.e. I almost finished this, but 3 tests aren't passing).
+This repository represents my work on the Interpreter project. At its core, the project revolves around the creation of an interpreter that interprets bytecode instructions. The critical components include the `ByteCodeLoader` class, responsible for reading bytecode instructions from a file and dynamically creating instances of corresponding bytecode classes through the use of reflection.
 
-| Requirement                           | Completed? | Comments from student |
-| ------------------------------------- | ---------- | --------------------- |
-| 1. Standard byte codes implemented    | [X]         |     It was hard to implement each class and to have correct methods and fields within those classes.                   |
-| 2. CodeTable implemented              | [X]         |        It was fairly simple and straightforward.               |
-| 3. ByteCodeLoader implemented         | [X]         |          This was tricky. Especially the reflection part. Still, it doesn't make sense that much syntax-wise but it did work after a lot of YouTube videos.              |
-| 4. Program implemented                | [X]         |       The part where we resolved special addresses was tricky. Had to scratch my head for a few days on that.                 |
-| 5. RuntimeStack implemented           | [X]         |         It was fairly simple initially. But I had to fix it multiple times over many days while writing the Byte Code extended classes.              |
-| 6. New bytecode implemented (DMP)     | [X]         |        It was simple. I did this part at last. So, I had a pretty good sense of how the logic was being handled over different files.               |
-| 7. Output correct (for byte codes)    | [X]         |        Some of the output requirements were tricky. Like the one in the call and return. I tried to take care of different types of returns and calls which took more time than I had thought initially.              |
-| 8. Output correct (for runtime stack) | [X]         |      I tried with multiple different programs and the provided test itself. It was working fine with them. So, I think it is correct as far as my understanding goes.                   |
+Once instantiated, this list of bytecode classes is then passed to the `Program` class, which acts as the orchestrator for the execution of these bytecode instructions. The heart of the execution process lies in the `VirtualMachine` class, which diligently manages the step-by-step execution of bytecode instructions.
+
+What sets this project apart is the architectural emphasis on the interpretation of bytecode instructions, ensuring the seamless interaction between various components. During the execution phase, each bytecode class assumes a pivotal role, defining its specific behavior through the implementation of the `execute` method.
+
+Moreover, the project's architecture extends beyond mere execution. It actively maintains critical runtime components, including a dynamic stack and program counter, further solidifying its robust interpretative capabilities. Exploring this repository provides a deeper insight into the intricacies of interpreter design, the symbiotic relationship between classes, and the elegance in handling bytecode instructions.
+
+
+## Completed Tasks
+
+- **Standard Byte Codes Implemented**
+  - Successfully implemented various byte codes with careful consideration of methods and fields within each class.
+
+- **CodeTable Implementation**
+  - Implemented the CodeTable, providing a straightforward solution.
+
+- **ByteCodeLoader Implementation**
+  - Developed the ByteCodeLoader, facing challenges with the reflection part and overcoming them with insights from various online resources.
+
+- **Program Implementation**
+  - Successfully implemented the Program, with a focus on resolving special addresses and addressing trickier aspects.
+
+- **RuntimeStack Implementation**
+  - Implemented the RuntimeStack, initially facing challenges that required multiple fixes during the development of Byte Code extended classes.
+
+- **New Bytecode (DMP) Implementation**
+  - Introduced a new bytecode (DMP) towards the end of the project, leveraging a good understanding of the logic across different files.
+
+- **Correct Output (for Byte Codes)**
+  - Ensured correct output for byte codes, addressing some tricky requirements, such as those related to calls and returns.
+
+- **Correct Output (for Runtime Stack)**
+  - Validated the correctness of the output for the runtime stack, testing it with various programs, including the provided test.
 
 ## Results and Conclusions
 
 ### What I Learned
 
-This assignment was very helpful in learning and getting used to the big code base. I was comfortable with the logic being handled in different files. A few concepts that I learned were: 
-1. Reflection: I wasn't known to reflection before. So, it was nice to get to know and implement it. But, I'm not that comfortable with it still. 
-2. Inner workings of Interpreter: In the interpreter, we use `ByteCodeLoader` class for reading bytecode instructions from a file and creating instances of corresponding bytecode classes using reflection. Those list of bytecode classes then are passed to the `Program` class. The `VirtualMachine` class manages the execution of these instructions. During execution, each bytecode class is responsible for defining its behavior through the `execute` method. The architecture also facilitates the interpretation of bytecode instructions, maintaining runtime components such as the stack and program counter.
+This project significantly contributed to my understanding and familiarity with a large codebase. Key concepts learned include:
 
-### Challenges I Encountered
+1. **Reflection:**
+   - Implemented reflection for the first time, gaining valuable insights into its functionality.
 
-Everything felt like a challenge if I'm being honest. But, I appreciate those challenges as I got to learn a lot with this assignment. I have a better understanding of the architecture of the Interpreter and how all the small components act together to do complex tasks. Or, how complex the code gets for something that seemed simple initially.
+2. **Inner Workings of Interpreter:**
+   - Explored the intricacies of the interpreter, understanding the role of classes like `ByteCodeLoader`, `Program`, and `VirtualMachine`. Learned how these components collaborate to execute bytecode instructions.
+
+### Challenges Faced
+
+The project presented various challenges, serving as valuable learning opportunities. Notable difficulties included:
+
+- **Complexity:**
+  - Found that seemingly simple tasks could lead to complex code, reinforcing the importance of a structured and modular approach.
+
+- **Special Addresses Resolution:**
+  - The resolution of special addresses in the Program implementation posed a challenging problem that required considerable effort and contemplation.
+
+## Concluding Thoughts
+
+This project enhanced my programming skills, especially in dealing with larger codebases and implementing intricate functionalities. I now have a deeper understanding of the inner workings of interpreters and have expanded my skill set with the use of reflection.
+
+Feel free to explore the code and commit history to gain insights into the development process and the evolution of the project.
